@@ -1,5 +1,16 @@
 // Hearthspace V3 JavaScript
 
+// Track visit source (for analytics)
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const source = urlParams.get('ref') || urlParams.get('source') || 'direct';
+  
+  // Store in sessionStorage for signup form
+  sessionStorage.setItem('signup_source', source);
+  
+  console.log('Visit source:', source);
+});
+
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -21,6 +32,9 @@ if (form) {
     
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+    
+    // Add source tracking
+    data.source = sessionStorage.getItem('signup_source') || 'direct';
     
     const button = form.querySelector('button[type="submit"]');
     const originalText = button.textContent;

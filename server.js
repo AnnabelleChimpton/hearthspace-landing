@@ -18,6 +18,7 @@ db.exec(`
     frustration TEXT,
     would_pay TEXT,
     open_to_call TEXT,
+    source TEXT DEFAULT 'direct',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);
@@ -29,7 +30,7 @@ app.use(express.static('public'));
 
 // Email capture endpoint
 app.post('/api/signup', (req, res) => {
-  const { email, current_tool, frustration, would_pay, open_to_call } = req.body;
+  const { email, current_tool, frustration, would_pay, open_to_call, source } = req.body;
   
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Valid email required' });
@@ -37,11 +38,18 @@ app.post('/api/signup', (req, res) => {
   
   try {
     const stmt = db.prepare(`
-      INSERT INTO signups (email, current_tool, frustration, would_pay, open_to_call)
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO signups (email, current_tool, frustration, would_pay, open_to_call, source)
+      VALUES (?, ?, ?, ?, ?, ?)
     `);
     
-    stmt.run(email, current_tool || null, frustration || null, would_pay || null, open_to_call || null);
+    stmt.run(
+      email, 
+      current_tool || null, 
+      frustration || null, 
+      would_pay || null, 
+      open_to_call || null,
+      source || 'direct'
+    );
     
     res.json({ success: true, message: 'Thanks for signing up!' });
   } catch (err) {
@@ -58,14 +66,17 @@ app.get('/api/stats', (req, res) => {
   const count = db.prepare('SELECT COUNT(*) as count FROM signups').get();
   const recent = db.prepare('SELECT * FROM signups ORDER BY created_at DESC LIMIT 10').all();
   const wouldPay = db.prepare('SELECT COUNT(*) as count FROM signups WHERE would_pay = "yes"').get();
+  const bySource = db.prepare('SELECT source, COUNT(*) as count FROM signups GROUP BY source ORDER BY count DESC').all();
   
   res.json({
     total: count.count,
     wouldPay: wouldPay.count,
+    bySource: bySource,
     recent: recent.map(r => ({ 
       email: r.email.replace(/(.{3}).*(@.*)/, '$1***$2'), // Mask email
       created: r.created_at,
-      wouldPay: r.would_pay
+      wouldPay: r.would_pay,
+      source: r.source || 'direct'
     }))
   });
 });
@@ -74,9 +85,9 @@ app.get('/api/stats', (req, res) => {
 app.get('/api/export', (req, res) => {
   const signups = db.prepare('SELECT * FROM signups ORDER BY created_at DESC').all();
   
-  let csv = 'Email,Current Tool,Frustration,Would Pay,Open to Call,Created At\n';
+  let csv = 'Email,Current Tool,Frustration,Would Pay,Open to Call,Source,Created At\n';
   signups.forEach(s => {
-    csv += `"${s.email}","${s.current_tool || ''}","${s.frustration || ''}","${s.would_pay || ''}","${s.open_to_call || ''}","${s.created_at}"\n`;
+    csv += `"${s.email}","${s.current_tool || ''}","${s.frustration || ''}","${s.would_pay || ''}","${s.open_to_call || ''}","${s.source || 'direct'}","${s.created_at}"\n`;
   });
   
   res.setHeader('Content-Type', 'text/csv');
