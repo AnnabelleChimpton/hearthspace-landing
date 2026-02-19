@@ -23,6 +23,19 @@ db.exec(`
   )
 `);
 
+// Migration: Add source column if it doesn't exist (for existing databases)
+try {
+  const tableInfo = db.prepare("PRAGMA table_info(signups)").all();
+  const hasSource = tableInfo.some(col => col.name === 'source');
+  if (!hasSource) {
+    console.log('Running migration: Adding source column...');
+    db.exec(`ALTER TABLE signups ADD COLUMN source TEXT DEFAULT 'direct'`);
+    console.log('✅ Migration complete: source column added');
+  }
+} catch (err) {
+  console.log('Note: Migration check failed (this is OK if table is new):', err.message);
+}
+
 // Middleware
 app.use(cors());
 app.use(express.json());
