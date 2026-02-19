@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearthspace - Your friend group deserves better than Discord</title>
+  <meta name="description" content="A private space for your crew — no algorithms, no chaos, just your people.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Your friend group deserves better than Discord</h1>
+      <p class="subtitle">Stop losing photos in chat history. Stop missing plans because someone muted notifications. Hearthspace is a private space for your crew — no algorithms, no chaos, just your people.</p>
+      <button class="cta-button" onclick="scrollToSignup()">Join the Waitlist</button>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="problem">
+    <div class="container">
+      <h2>You've felt this before</h2>
+      <div class="pain-points">
+        <div class="pain-card">
+          <div class="icon">📸</div>
+          <h3>Photos disappear</h3>
+          <p>Remember that perfect sunset from your road trip? It's buried in 10,000 Discord messages. Good luck finding it.</p>
+        </div>
+        <div class="pain-card">
+          <div class="icon">🔔</div>
+          <h3>Notification hell</h3>
+          <p>Either you're drowning in pings, or you muted the channel and missed the dinner plans. There's no in-between.</p>
+        </div>
+        <div class="pain-card">
+          <div class="icon">📅</div>
+          <h3>Planning is chaos</h3>
+          <p>"When should we meet?" gets asked 12 times across 3 platforms. Google Calendar link gets lost. Someone forgets anyway.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section class="solution">
+    <div class="container">
+      <h2>What if your friend group had a <em>home</em>?</h2>
+      <p class="section-subtitle">Not a chat app. Not a social network. A private space that actually works.</p>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏡</div>
+          <h3>Shared Feed</h3>
+          <p>Status updates, photos, life news. Check it once a day, not 50 times. Chronological always — no algorithm deciding what you see.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📷</div>
+          <h3>Photo Albums That Stay</h3>
+          <p>"Summer 2025." "Friendsgiving." "Inside Jokes." Organized, searchable, never lost. Actually remember the good times.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>One Shared Calendar</h3>
+          <p>Birthdays, dinners, trips. Everyone sees it. Everyone can add to it. No more "wait, when was that again?"</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Built for Intimacy</h3>
+          <p>No likes. No engagement metrics. No ads. Just your people, in a space that feels like yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Different Section -->
+  <section class="different">
+    <div class="container">
+      <h2>What Hearthspace isn't</h2>
+      <div class="comparison-grid">
+        <div class="comparison-item">
+          <strong>Discord:</strong> Great for gaming communities. Terrible for small friend groups.
+        </div>
+        <div class="comparison-item">
+          <strong>WhatsApp:</strong> Fine for quick chats. Awful for shared memory.
+        </div>
+        <div class="comparison-item">
+          <strong>Facebook:</strong> You know why you left.
+        </div>
+        <div class="comparison-item">
+          <strong>Geneva/Circle:</strong> Built for creators, not friends.
+        </div>
+      </div>
+      <p class="tagline">Hearthspace is built for one thing: keeping your crew connected without the chaos.</p>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="container">
+      <h2>Simple, honest pricing</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Free Tier</h3>
+          <ul>
+            <li>Up to 5 friends</li>
+            <li>500MB storage</li>
+            <li>Basic features</li>
+          </ul>
+          <button class="secondary-button" onclick="scrollToSignup()">Join Waitlist</button>
+        </div>
+        <div class="pricing-card featured">
+          <div class="badge">Recommended</div>
+          <h3>Premium</h3>
+          <div class="price">$15<span>/month</span></div>
+          <ul>
+            <li>Up to 30 friends</li>
+            <li>50GB storage</li>
+            <li>Custom domain</li>
+            <li>Themes & customization</li>
+          </ul>
+          <button class="cta-button" onclick="scrollToSignup()">Join Waitlist</button>
+        </div>
+      </div>
+      <p class="pricing-note">One person pays, everyone benefits. Share the cost with your crew.</p>
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section class="signup" id="signup">
+    <div class="container">
+      <h2>Ready to bring your group home?</h2>
+      <p class="section-subtitle">Hearthspace launches Spring 2026. Join the waitlist and help us build it.</p>
+      
+      <form id="signup-form" class="signup-form">
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        
+        <div class="form-group optional-section">
+          <p class="optional-label">Help us understand your needs (optional):</p>
+          
+          <select id="current_tool" name="current_tool">
+            <option value="">What do you currently use?</option>
+            <option value="discord">Discord</option>
+            <option value="whatsapp">WhatsApp/Signal group chat</option>
+            <option value="facebook">Facebook Group</option>
+            <option value="other">Other</option>
+          </select>
+          
+          <textarea id="frustration" name="frustration" placeholder="What's the most frustrating part?" rows="3"></textarea>
+          
+          <select id="would_pay" name="would_pay">
+            <option value="">Would you pay $15/month?</option>
+            <option value="yes">Yes, definitely</option>
+            <option value="maybe">Maybe, depends on features</option>
+            <option value="no">No, only free version</option>
+          </select>
+          
+          <input type="text" id="open_to_call" name="open_to_call" placeholder="Your Twitter/Discord handle (if open to a quick chat)">
+        </div>
+        
+        <button type="submit" class="cta-button">Join the Waitlist</button>
+        
+        <p class="trust-signal">No spam. No selling your data. We'll email you when we launch.</p>
+      </form>
+      
+      <div id="success-message" class="success-message" style="display: none;">
+        <h3>🎉 You're on the list!</h3>
+        <p>Thanks for signing up. We'll email you when Hearthspace launches (Spring 2026).</p>
+      </div>
+      
+      <div id="error-message" class="error-message" style="display: none;"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Building Hearthspace in public. Questions? Email: hello@hearthspace.app</p>
+      <p class="small">© 2026 Hearthspace. Made for friend groups who want something better.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

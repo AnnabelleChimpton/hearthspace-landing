@@ -1,0 +1,18 @@
+{
+  "name": "hearthspace-landing",
+  "version": "0.1.0",
+  "description": "Hearthspace landing page + email capture",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "better-sqlite3": "^9.2.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
