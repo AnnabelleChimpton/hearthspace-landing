@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearthspace Product Mockups</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8f9fa;
+      padding: 2rem;
+    }
+    
+    .mockup-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .mockup-section {
+      margin-bottom: 4rem;
+    }
+    
+    .mockup-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2C3E50;
+    }
+    
+    .mockup-caption {
+      font-size: 1rem;
+      color: #7F8C8D;
+      margin-bottom: 2rem;
+    }
+    
+    /* Phone Frame */
+    .phone-frame {
+      width: 375px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 40px;
+      padding: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    
+    .phone-notch {
+      width: 120px;
+      height: 25px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      margin: 0 auto 8px;
+    }
+    
+    .phone-screen {
+      background: #FFFBF7;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 600px;
+    }
+    
+    /* App UI Components */
+    .app-header {
+      background: #fff;
+      padding: 1rem;
+      border-bottom: 1px solid #ECF0F1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .app-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #FF6B6B;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      background: #fff;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+      border-bottom: 1px solid #ECF0F1;
+    }
+    
+    .nav-tab {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .nav-tab.active {
+      background: #FF6B6B;
+      color: white;
+    }
+    
+    .nav-tab.inactive {
+      background: transparent;
+      color: #95A5A6;
+    }
+    
+    /* Albums View */
+    .albums-grid {
+      padding: 1rem;
+      display: grid;
+      gap: 1rem;
+    }
+    
+    .album-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .album-preview {
+      height: 120px;
+      background: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      padding: 2px;
+    }
+    
+    .album-preview-img {
+      background: #ffd4d4;
+      border-radius: 4px;
+    }
+    
+    .album-info {
+      padding: 0.75rem;
+    }
+    
+    .album-title {
+      font-weight: 600;
+      color: #2C3E50;
+      margin-bottom: 0.25rem;
+    }
+    
+    .album-meta {
+      font-size: 0.85rem;
+      color: #95A5A6;
+    }
+    
+    /* Feed View */
+    .feed {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .feed-post {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .post-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+    }
+    
+    .post-author {
+      font-weight: 600;
+      color: #2C3E50;
+      font-size: 0.95rem;
+    }
+    
+    .post-time {
+      font-size: 0.8rem;
+      color: #95A5A6;
+    }
+    
+    .post-content {
+      color: #34495E;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+    
+    .post-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #ffd4d4 0%, #c4f0e8 100%);
+      border-radius: 8px;
+    }
+    
+    /* Calendar View */
+    .calendar {
+      padding: 1rem;
+    }
+    
+    .calendar-month {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #2C3E50;
+      margin-bottom: 1rem;
+    }
+    
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .calendar-day-label {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #95A5A6;
+      font-weight: 600;
+      padding: 0.5rem 0;
+    }
+    
+    .calendar-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #2C3E50;
+    }
+    
+    .calendar-day.today {
+      background: #FF6B6B;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .calendar-day.has-event {
+      background: #FFF4E6;
+      color: #FF6B6B;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .calendar-day.has-event::after {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: #FF6B6B;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 4px;
+    }
+    
+    .events-list {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .events-title {
+      font-weight: 600;
+      color: #2C3E50;
+      margin-bottom: 1rem;
+    }
+    
+    .event-item {
+      padding: 0.75rem;
+      background: #FFFBF7;
+      border-left: 3px solid #FF6B6B;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    
+    .event-date {
+      font-size: 0.85rem;
+      color: #FF6B6B;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .event-title {
+      font-weight: 600;
+      color: #2C3E50;
+    }
+  </style>
+</head>
+<body>
+  <div class="mockup-container">
+    
+    <!-- Mockup 1: Albums -->
+    <div class="mockup-section">
+      <h2 class="mockup-title">Albums View</h2>
+      <p class="mockup-caption">All your photos, organized. Not buried in chat history.</p>
+      
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="app-header">
+            <div class="app-title">Hearthspace</div>
+            <div style="font-size: 1.5rem;">👥</div>
+          </div>
+          
+          <div class="nav-tabs">
+            <div class="nav-tab active">Albums</div>
+            <div class="nav-tab inactive">Feed</div>
+            <div class="nav-tab inactive">Calendar</div>
+          </div>
+          
+          <div class="albums-grid">
+            <div class="album-card">
+              <div class="album-preview">
+                <div class="album-preview-img"></div>
+                <div class="album-preview-img"></div>
+                <div class="album-preview-img"></div>
+                <div class="album-preview-img"></div>
+              </div>
+              <div class="album-info">
+                <div class="album-title">Summer Road Trip 2025</div>
+                <div class="album-meta">24 photos • Last updated 3 days ago</div>
+              </div>
+            </div>
+            
+            <div class="album-card">
+              <div class="album-preview" style="background: linear-gradient(135deg, #4ECDC4 0%, #FFA07A 100%);">
+                <div class="album-preview-img" style="background: #c4f0e8;"></div>
+                <div class="album-preview-img" style="background: #c4f0e8;"></div>
+                <div class="album-preview-img" style="background: #c4f0e8;"></div>
+                <div class="album-preview-img" style="background: #c4f0e8;"></div>
+              </div>
+              <div class="album-info">
+                <div class="album-title">Friendsgiving</div>
+                <div class="album-meta">18 photos • Last updated 2 weeks ago</div>
+              </div>
+            </div>
+            
+            <div class="album-card">
+              <div class="album-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="album-preview-img" style="background: #d4dcff;"></div>
+                <div class="album-preview-img" style="background: #d4dcff;"></div>
+                <div class="album-preview-img" style="background: #d4dcff;"></div>
+                <div class="album-preview-img" style="background: #d4dcff;"></div>
+              </div>
+              <div class="album-info">
+                <div class="album-title">Random Good Times</div>
+                <div class="album-meta">47 photos • Last updated 5 days ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mockup 2: Feed -->
+    <div class="mockup-section">
+      <h2 class="mockup-title">Feed View</h2>
+      <p class="mockup-caption">Chronological always. No algorithm. Just your people.</p>
+      
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="app-header">
+            <div class="app-title">Hearthspace</div>
+            <div style="font-size: 1.5rem;">👥</div>
+          </div>
+          
+          <div class="nav-tabs">
+            <div class="nav-tab inactive">Albums</div>
+            <div class="nav-tab active">Feed</div>
+            <div class="nav-tab inactive">Calendar</div>
+          </div>
+          
+          <div class="feed">
+            <div class="feed-post">
+              <div class="post-header">
+                <div class="post-avatar"></div>
+                <div>
+                  <div class="post-author">Sarah</div>
+                  <div class="post-time">2 hours ago</div>
+                </div>
+              </div>
+              <div class="post-content">
+                Just booked flights for the beach trip! Who's still in? 🏖️
+              </div>
+            </div>
+            
+            <div class="feed-post">
+              <div class="post-header">
+                <div class="post-avatar" style="background: linear-gradient(135deg, #4ECDC4, #667eea);"></div>
+                <div>
+                  <div class="post-author">Alex</div>
+                  <div class="post-time">Yesterday</div>
+                </div>
+              </div>
+              <div class="post-content">
+                Found this from last year's trip. Remember when Jordan fell in the pool? 😂
+              </div>
+              <div class="post-image"></div>
+            </div>
+            
+            <div class="feed-post">
+              <div class="post-header">
+                <div class="post-avatar" style="background: linear-gradient(135deg, #764ba2, #FFA07A);"></div>
+                <div>
+                  <div class="post-author">Jordan</div>
+                  <div class="post-time">3 days ago</div>
+                </div>
+              </div>
+              <div class="post-content">
+                Dinner on Friday? Vote in the calendar 📅
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mockup 3: Calendar -->
+    <div class="mockup-section">
+      <h2 class="mockup-title">Calendar View</h2>
+      <p class="mockup-caption">One calendar. Everyone sees it. Never miss a birthday again.</p>
+      
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="app-header">
+            <div class="app-title">Hearthspace</div>
+            <div style="font-size: 1.5rem;">👥</div>
+          </div>
+          
+          <div class="nav-tabs">
+            <div class="nav-tab inactive">Albums</div>
+            <div class="nav-tab inactive">Feed</div>
+            <div class="nav-tab active">Calendar</div>
+          </div>
+          
+          <div class="calendar">
+            <div class="calendar-month">March 2026</div>
+            
+            <div class="calendar-grid">
+              <div class="calendar-day-label">Sun</div>
+              <div class="calendar-day-label">Mon</div>
+              <div class="calendar-day-label">Tue</div>
+              <div class="calendar-day-label">Wed</div>
+              <div class="calendar-day-label">Thu</div>
+              <div class="calendar-day-label">Fri</div>
+              <div class="calendar-day-label">Sat</div>
+              
+              <div class="calendar-day" style="opacity: 0.3;">26</div>
+              <div class="calendar-day" style="opacity: 0.3;">27</div>
+              <div class="calendar-day" style="opacity: 0.3;">28</div>
+              <div class="calendar-day" style="opacity: 0.3;">29</div>
+              <div class="calendar-day" style="opacity: 0.3;">30</div>
+              <div class="calendar-day" style="opacity: 0.3;">31</div>
+              <div class="calendar-day">1</div>
+              <div class="calendar-day">2</div>
+              <div class="calendar-day">3</div>
+              <div class="calendar-day">4</div>
+              <div class="calendar-day">5</div>
+              <div class="calendar-day">6</div>
+              <div class="calendar-day">7</div>
+              <div class="calendar-day">8</div>
+              <div class="calendar-day">9</div>
+              <div class="calendar-day">10</div>
+              <div class="calendar-day">11</div>
+              <div class="calendar-day">12</div>
+              <div class="calendar-day">13</div>
+              <div class="calendar-day">14</div>
+              <div class="calendar-day has-event">15</div>
+              <div class="calendar-day">16</div>
+              <div class="calendar-day">17</div>
+              <div class="calendar-day">18</div>
+              <div class="calendar-day today">19</div>
+              <div class="calendar-day">20</div>
+              <div class="calendar-day">21</div>
+              <div class="calendar-day has-event">22</div>
+              <div class="calendar-day">23</div>
+              <div class="calendar-day">24</div>
+              <div class="calendar-day">25</div>
+              <div class="calendar-day">26</div>
+              <div class="calendar-day">27</div>
+              <div class="calendar-day">28</div>
+              <div class="calendar-day">29</div>
+              <div class="calendar-day">30</div>
+              <div class="calendar-day">31</div>
+            </div>
+            
+            <div class="events-list">
+              <div class="events-title">Upcoming Events</div>
+              <div class="event-item">
+                <div class="event-date">March 15 • Saturday</div>
+                <div class="event-title">🎂 Alex's Birthday</div>
+              </div>
+              <div class="event-item">
+                <div class="event-date">March 22 • Saturday</div>
+                <div class="event-title">🎮 Game Night at Jordan's</div>
+              </div>
+              <div class="event-item">
+                <div class="event-date">April 12-18</div>
+                <div class="event-title">🏖️ Summer Trip Planning</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
